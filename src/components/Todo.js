@@ -24,7 +24,7 @@ const todo = props => {
     },[])
 
     const mouseMovementHandler = (event) => {
-        console.log(event.clientX,event.clientY)
+       // console.log(event.clientX,event.clientY)
     }
 
     useEffect(()=> {
@@ -51,19 +51,31 @@ const todo = props => {
             })
     }
 
+     const showDiv = ()=> {
+        //  console.log("prop" + props.todoDisplay)
+        //  return "none"
+         if(props.todoDisplay) {
+             return "block"
+         } else {
+             return "none"
+         }
+     }
+
 
     return(
         <React.Fragment>
-            <input 
-                type="text"
-                placeholder="Todo"
-                onChange={inputChangeHandler}
-                value={todoName}
-            />
-            <button type="button" onClick={todoHandler}>Add</button>
-            <ul>
-                {todoList.map(todo=><li key={todo.id}>{todo.name}</li>)}
-            </ul>
+            <div style={{display:showDiv()}}>
+                <input 
+                    type="text"
+                    placeholder="Todo"
+                    onChange={inputChangeHandler}
+                    value={todoName}
+                />
+                <button type="button" onClick={todoHandler}>Add</button>
+                <ul>
+                    {todoList.map(todo=><li key={todo.id}>{todo.name}</li>)}
+                </ul>
+            </div>
         </React.Fragment>
     )
 }
